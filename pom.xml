@@ -8,20 +8,19 @@
         <version>3.2.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>econcept</artifactId>
+    <groupId>gr.codehub</groupId>
+    <artifactId>eshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>econcept</name>
-    <description>econcept</description>
+    <name>eshop</name>
+    <description>eshop</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>21</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -39,14 +38,124 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
     <dependency>
         <groupId>com.microsoft.sqlserver</groupId>
         <artifactId>mssql-jdbc</artifactId>
         <version>11.2.1.jre17</version>
     </dependency>
+
+        <!--
+        logging
+        map
+        security RBAC
+
+        -->
+
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+
+        <!-- security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+
+<!--   @NonNull  @Cleanup   -->
+        <dependency>
+            <groupId>org.checkerframework</groupId>
+            <artifactId>checker-qual</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+
+
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>profile-1</id> <!-- Unique identifier for the profile -->
+            <activation>
+                <!-- Define conditions when this profile should be activated -->
+                <!-- For example, you can activate a profile based on a property, JDK version, etc. -->
+                <!-- Here's an example of activating the profile based on the value of a property -->
+                <property>
+                    <name>profile.active</name>
+                    <value>profile1</value>
+                </property>
+            </activation>
+            <build>
+                <!-- Define build configuration for this profile -->
+                <!-- For example, you can specify dependencies, plugins, etc. -->
+                <plugins>
+                    <!-- Example plugin configuration -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>profile-2</id>
+            <!-- Define activation conditions for this profile -->
+            <activation>
+                <!-- Example activation based on JDK version -->
+                <jdk>[1.9,)</jdk>
+            </activation>
+            <!-- Define build configuration for this profile -->
+            <build>
+                <!-- Example plugin configuration -->
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <source>17</source>
+                            <target>17</target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
